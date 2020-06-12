@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import re
-from pendulum import Pendulum, Date
+# from pendulum import Pendulum, Date
+from pendulum.datetime import DateTime, Date
+from pendulum.date import Date
 
 try:
     import MySQLdb as mysql
