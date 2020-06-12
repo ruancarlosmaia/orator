@@ -6,6 +6,7 @@ import inflection
 import inspect
 import uuid
 import datetime
+from pendulum.datetime import DateTime
 from warnings import warn
 from six import add_metaclass
 from collections import OrderedDict
@@ -1871,7 +1872,8 @@ class Model(object):
 
         :return: pendulum.Pendulum
         """
-        return pendulum.utcnow()
+        # return pendulum.utcnow()
+        return pendulum.now()
 
     def fresh_timestamp_string(self):
         """
@@ -2596,13 +2598,15 @@ class Model(object):
         """
         date_format = self.get_connection().get_query_grammar().get_date_format()
 
-        if isinstance(value, pendulum.Pendulum):
+        # if isinstance(value, pendulum.Pendulum):
+        if isinstance(value, DateTime):
             return value.format(date_format)
 
         if isinstance(value, datetime.date) and not isinstance(
             value, (datetime.datetime)
         ):
-            value = pendulum.date.instance(value)
+            # value = pendulum.date.instance(value)
+            value = pendulum.instance(value)
 
             return value.format(date_format)
 
@@ -2623,7 +2627,8 @@ class Model(object):
         if isinstance(value, datetime.date) and not isinstance(
             value, (datetime.datetime)
         ):
-            return pendulum.date.instance(value)
+            # return pendulum.date.instance(value)
+            return pendulum.instance(value)
 
         return pendulum.instance(value)
 
