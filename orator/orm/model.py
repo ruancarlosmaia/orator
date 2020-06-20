@@ -1872,8 +1872,7 @@ class Model(object):
 
         :return: pendulum.Pendulum
         """
-        # return pendulum.utcnow()
-        return pendulum.now()
+        return pendulum.now('utc')
 
     def fresh_timestamp_string(self):
         """
